@@ -1,6 +1,6 @@
 package tga.training.brackets
 
-fun main(args : Array<String>) {
+fun main() {
 
     test("([{}])", true)
     test("([{])", false)
@@ -20,7 +20,7 @@ fun test(input: String, expectedResult: Boolean) {
 }
 
 fun isBalanced(str: String): Boolean {
-    val stack = Array<Char>(str.length){' '}
+    val stack = Array(str.length){' '}
     var i = 0
 
     str.forEach{ ch ->
