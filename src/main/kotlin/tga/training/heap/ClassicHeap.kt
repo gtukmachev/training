@@ -1,14 +1,15 @@
 package tga.training.heap
 
-class ClassicHeap<T : Comparable<T>>(
-    val comparator: Comparator<T> = NaturalComparator()
+open class ClassicHeap<T : Comparable<T>>(
+    private val comparator: Comparator<T> = NaturalComparator()
 ) : Heap<T>
 {
 
-    private val arr: ArrayList<T> = ArrayList()
+    protected val arr: ArrayList<T> = ArrayList()
 
     override val size: Int get() = arr.size
-    override val head: T   get() = arr[0]
+
+    override val head: T get() = arr[0]
 
     override fun iterator(): Iterator<T> = arr.iterator()
 
@@ -62,7 +63,8 @@ class ClassicHeap<T : Comparable<T>>(
         return head
     }
 
-    class NaturalComparator<T: Comparable<T>> : Comparator<T> {
+    protected class NaturalComparator<T: Comparable<T>> : Comparator<T> {
         override fun compare(o1: T, o2: T): Int = o1.compareTo(o2)
     }
+
 }
