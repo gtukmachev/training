@@ -3,9 +3,9 @@ package tga.concurency
 import java.lang.Thread.sleep
 
 
-data class PingActor(
-    val synch: Object,
+class PingThread(
     val name_: String,
+    val synch: Object,
     val repeats: Int = 3,
     val timeoutMillis: Long = 3000,
     val action: (Int) -> Unit
@@ -31,9 +31,8 @@ fun main () {
 
     val synch = Object()
 
-    val pingThread = PingActor(synch, "ping"){ log("ping($it) ->"); sleep(100) }
-    val pongThread = PingActor(synch, "pong"){ log("             <- PONG($it)"); sleep(400) }
-
+    val pingThread = PingThread("ping", synch){ log("ping($it) ->");              sleep(100) }
+    val pongThread = PingThread("pong", synch){ log("             <- PONG($it)"); sleep(400) }
 
     synchronized(synch) {
         pingThread.start()
