@@ -53,5 +53,20 @@ class LRUCacheTests {
 
     }
 
+    @Test
+    fun test2_1() {
+        val cache = LRUCache(2)
+
+        cache[2] = 1
+        cache[2] = 2
+
+        assertThat( cache[2] ).isEqualTo(2)
+
+        cache[1] = 1
+        cache[4] = 1
+
+        assertThat( cache[2] ).isEqualTo(-1)
+    }
+
 }
 

@@ -43,7 +43,10 @@ class LRUCache(val capacity: Int) {
 
     fun put(key: Int, value: Int) {
         val existsValue = get(key)
-        if (existsValue != -1) return
+        if (existsValue != -1) {
+            head.next!!.value = value
+            return
+        }
 
         val keyNode = head
         keyNode.key = key
